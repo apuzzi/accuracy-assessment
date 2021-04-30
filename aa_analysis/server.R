@@ -317,6 +317,19 @@ shinyServer(function(input, output, session) {
     }
   })
   
+  ## select the column with strata in the reference data file
+  output$strataCol <- renderUI({
+    if (input$column_strata == T) {
+      if (is.element('area', names(df_i())) == FALSE) { ###### need to check if it's 'area' here #########
+        selectInput(
+          'refStrataCol',
+          'Choose the the column with the original strata information',
+          choices = names(df_i()),
+          multiple = FALSE
+        )
+      }
+    }
+  })
   
   ## standardize the column names for the validation file
   df_i_map <- reactive({
