@@ -140,7 +140,11 @@ shinyUI(
                              br(),
                              br(),
                              img(src="thumbnails/AA_cover.jpg", height = 250, width = 200),
-                             a(href="http://www.fao.org/3/a-i5601e.pdf"," FAO NFMA paper N46: Map accuracy assessment and area estimation",target="_blank")
+                             a(href="http://www.fao.org/3/a-i5601e.pdf"," FAO NFMA paper N46: Map accuracy assessment and area estimation",target="_blank"),
+                             br(),
+                             br(),
+                             img(src="thumbnails/Stehman2014_cover.png", height = 90, width = 200),
+                             a(href="https://www.tandfonline.com/doi/abs/10.1080/01431161.2014.930207"," Stehman (2014): Estimating area and map accuracy for stratified random sampling when strata are different from the map classes",target="_blank")
                     )
                   )
                     )
@@ -156,7 +160,7 @@ shinyUI(
                   box(title= textOutput('t2_b1_title'), status = "success", solidHeader= TRUE,
                           htmlOutput('t2_b1_body'),
 
-                      textInput("ceo_url", "CEO url:"),
+                      textInput("ceo_url", "CEO url (does not work when using strata that are different from map classes):"),
                       actionButton("clipbtn", "Paste CEO url from clipboard", icon = icon("clipboard")),
                       actionButton("import_ceo_project", "Import CEO project", icon = icon("file-import")),
                       br(),
@@ -188,7 +192,10 @@ shinyUI(
                       uiOutput("classCol"),
                       
                       checkboxInput("plot_size_col", label=textOutput('t2_b2_button')),
-                      uiOutput("refPlotSize")
+                      uiOutput("refPlotSize"),
+                      
+                      checkboxInput("column_strata", label=textOutput('t2_b4_button')),
+                      uiOutput("strataCol")
                       
                   ),
                   
