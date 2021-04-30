@@ -24,6 +24,7 @@ output$download_matrix_button      <- reactive({'Download confusion matrix as ta
 output$download_accuracy_button    <- reactive({'Download area estimates as tabular data (.csv)'})
 
 output$t2_b2_button        <- reactive({"Do you have a column in the reference data input file with the plot size of each sample ?"})
+output$t2_b4_button        <- reactive({"Are the map classes different from the strata?"})
 
 output$t4_b4_button        <- reactive({"Do you want to filter the data?"})
 
@@ -52,7 +53,9 @@ output$t1_b1_body  <- reactive({
     <br/>
     It also compares the results with those from a theoretical simple random design sampling.
     <br/>
-    The objective of this tool is to provide a simple user interface for generating a probability dataset with stratified random sampling.
+    This tool also supports the estimation of area and map accuracy for stratified random sampling when the strata are different from the map classes (ratio estimator). E.g.: When a stratified sample is used to assess accuracy of more than one map (reuse of reference points) or when a map is revised after the stratified sample has been created (pixel was relabelled from a forest stratum to a cropland map class).
+	  <br/>
+    The objective of this tool is to provide a simple user interface for estimating area and map accuracy from a stratified random sample.
     <br/>
     For support ask",a(href="http://www.openforis.org/support"," Open Foris support forum",target="_blank")
     ))})
@@ -62,11 +65,12 @@ output$t1_b2_title <- reactive({"Background"})
 
 output$t1_b2_body  <- reactive({
   HTML(paste0(
-    "The aim of this stratified sampling design tool is to analyze results from a stratified sampling design that can be used for area estimates. <br/>
+    "The aim of this stratified sampling analysis tool is to analyze results from a stratified sampling design that can be used for area estimates. <br/>
 The idea is to combine a map (used as a stratification of the landscape of interest) with a visual map interpretation of samples to produce an area estimation. <br/>
+The tool also supports the estimation of area and map accuracy for stratified random sampling when the strata are different from the map classes (ratio estimator). E.g.: When a stratified sample is used to assess accuracy of more than one map (reuse of reference points) or when a map is revised after the stratified sample has been created (pixel was relabelled from a forest stratum to a cropland map class). <br/>
 <br/>
 The concept is derived from map accuracy assessment principles: 
-characterized frequency of errors (omission and commission) for each map class may be used to compute area estimates and also to estimate the uncertainties (confidence intervals) for the areas for each class."
+characterized frequency of errors (omission and commission) for each map class may be used to compute area estimates and also to estimate the uncertainties (confidence intervals) for the areas for each class. In case of when the strata are different from the map classes, an unbiased estimator (ratio estimator) is used to calculate the area estimates, user's, producer's and overall accuracies, and uncertainties."
     ))})
 
 ############################ INTRODUCTION TAB - BOX 3
@@ -110,7 +114,11 @@ output$t2_b1_body  <- reactive({
 - The validation file must contain a column with the classified reference data and a
     column with the original map data. <br/>
 - The area file should contain the map areas and the corresponding map class. <br/>
-    The area file can be generated in the Stratified Estimator Sampling Design application."
+    The area file can be generated in the Stratified Estimator Sampling Design application.
+<br/>
+If working with strata that are different from map classes: <br/>
+    - Your validation file will also need a column with the original strata pixels. <br/>
+    - The area file should correspond to the original strata area (or number of pixels)."
     ))})
 
 
